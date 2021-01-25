@@ -54,9 +54,6 @@ public class Owner  {
             "ownerid") }, inverseJoinColumns = { @JoinColumn(name = "id") })
      Set<Car> cars = new HashSet<Car>(0);
 
-    @Table
-            (name= "hello_my_table")
-
     public void setCars(Set<Car> cars) {
         this.cars = cars;
     }
