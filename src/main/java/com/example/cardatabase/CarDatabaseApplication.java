@@ -1,9 +1,6 @@
 package com.example.cardatabase;
 
-import com.example.cardatabase.domain.Car;
-import com.example.cardatabase.domain.CarRepository;
-import com.example.cardatabase.domain.Owner;
-import com.example.cardatabase.domain.OwnerRepository;
+import com.example.cardatabase.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +12,10 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class CarDatabaseApplication {
+
+	@Autowired
+	private UserRepository userRepository;
+
 	@Autowired
 	private CarRepository res;
 
@@ -46,6 +47,14 @@ public class CarDatabaseApplication {
 			res.save(new Car("Toyota", "Prius", "Silver",
 					"KKO-0212", 2018, 39000,o2));
 
+			// un: user, pw: user
+			userRepository.save(new User("user",
+					"$2a$04$1.YhMIgNX/8TkCKGFUONWO1waedKhQ5KrnB30fl0Q01QKqmzLf.Zi",
+					"USER"));
+			//un: admin, pw: admin
+			userRepository.save(new User("admin",
+					"$2a$04$KNLUwOWHVQZVpXyMBNc7JOzbLiBjb9Tk9bP7KNcPI12ICuvzXQQKG",
+					"ADMIN"));
 		};
 	}
 }
