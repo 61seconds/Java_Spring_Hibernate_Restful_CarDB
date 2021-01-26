@@ -1,7 +1,5 @@
 package com.example.cardatabase.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
@@ -51,11 +49,13 @@ public class Owner  {
 
 
     //Create MTM relationship with table car_owner
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "car_owner", joinColumns = { @JoinColumn(name =
             "ownerid") }, inverseJoinColumns = { @JoinColumn(name = "id") })
      Set<Car> cars = new HashSet<Car>(0);
 
+    @Table
+            (name= "hello_my_table")
 
     public void setCars(Set<Car> cars) {
         this.cars = cars;
